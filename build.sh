@@ -10,7 +10,7 @@ echo "::endgroup::"
 echo "::group:: System Configuration"
 
 # Enable/disable systemd services
-systemctl enable podman.socket
+# Example: systemctl enable podman.socket
 # Example: systemctl mask unwanted-service
 
 echo "::endgroup::"
