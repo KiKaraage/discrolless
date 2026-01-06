@@ -42,6 +42,8 @@ sudo bootc switch ghcr.io/KiKaraage/discrolless:latest
   - Shutdown Dialogue
   - Window title is back
   - WSP (Window Search Provider)
+  - Autohide​​​​ Battery
+  - Hide Volume Indicator
 - [ ] Enabling back GitHub Actions
 
 ### 5. Development Workflow
