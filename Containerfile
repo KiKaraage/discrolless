@@ -21,6 +21,7 @@
 
 # Context stage - combine local and imported OCI container resources
 FROM scratch AS ctx
+COPY build.sh /build.sh
 
 COPY build /build
 COPY custom /custom
@@ -47,7 +48,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    /ctx/build/10-build.sh
+    /ctx/build.sh
     
 ### LINTING
 ## Verify final image and contents are correct.
