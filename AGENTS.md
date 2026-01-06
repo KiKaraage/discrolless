@@ -192,7 +192,77 @@ The repository includes automated validation on pull requests:
 
 This section provides clear guidance on where to add different types of packages.
 
-### System Packages (dnf5 - Build-time)
+---
+
+## GNOME Shell Extensions
+
+Extensions are installed at build-time via git submodules in `files/usr/share/gnome-shell/extensions/`.
+
+### Adding a New Extension
+
+**Step 1: Add as git submodule**
+```bash
+git submodule add https://github.com/AUTHOR/extension-name.git files/usr/share/gnome-shell/extensions/UUID@domain
+git submodule update --init --recursive
+```
+
+**Step 2: Add to `.gitmodules` with branch**
+```ini
+[submodule "files/usr/share/gnome-shell/extensions/UUID@domain"]
+    path = files/usr/share/gnome-shell/extensions/UUID@domain
+    url = https://github.com/AUTHOR/extension-name.git
+    branch = vXX  # or master, main, etc.
+```
+
+**Step 3: Handle special treatments in `build.sh`**
+```bash
+# Schema compilation (for all extensions with schemas/)
+for schema_dir in /usr/share/gnome-shell/extensions/*/schemas; do
+    if [ -d "${schema_dir}" ]; then
+        glib-compile-schemas --strict "${schema_dir}"
+    fi
+done
+
+# Helper binaries (e.g., Logo Menu)
+install -Dpm0755 -t /usr/bin /usr/share/gnome-shell/extensions/UUID@domain/distroshelf-helper
+
+# Nested directory moves (e.g., Caffeine)
+if [ -d /usr/share/gnome-shell/extensions/tmp/caffeine/caffeine@patapon.info ]; then
+    mv /usr/share/gnome-shell/extensions/tmp/caffeine/caffeine@patapon.info /usr/share/gnome-shell/extensions/
+fi
+```
+
+### Extension Complexity Tiers
+
+| Tier | Build Requirements | Examples |
+|------|-------------------|----------|
+| **Simple** | `cp` + `glib-compile-schemas` | Dash in Panel, Window title is back, Autohide Battery, Hide Volume Indicator |
+| **Medium** | + gettext (`msgfmt`) | PaperWM, Bluetooth Battery Meter, Clipboard Indicator, Shutdown Dialogue, WSP |
+| **Complex** | npm/pnpm/TypeScript or Meson | Copyous, Night Theme Switcher, Rounded Window Corners |
+| **Runtime deps** | System libraries | Vitals (libgtop2-devel, lm_sensors) |
+
+### Files to Inspect in Extension Repos
+
+| File | Purpose |
+|------|---------|
+| `metadata.json` | UUID, gettext domain, shell version |
+| `Makefile` | Build targets (schema, locale, install) |
+| `package.json` / `meson.build` | Build system and dependencies |
+| `schemas/` | GSettings schemas (.xml → .compiled) |
+| `po/` or `locale/` | Translations (.po → .mo via `msgfmt`) |
+| `helpers/` or `bin/` | Executables for `/usr/bin` |
+| `resources/` | `.gresource` files (needs `glib-compile-resources`) |
+
+### Quick Heuristics
+
+- **Has `schemas/`** → Needs `glib-compile-schemas`
+- **Has `po/` or `locale/`** → Needs gettext (`msgfmt`)
+- **Has `helpers/` or `bin/`** → Needs binary installation to `/usr/bin`
+- **Has `resources/*.gresource`** → Needs `glib-compile-resources`
+- **Uses Meson/npm/pnpm** → Complex build-time compilation
+- **Flat structure, no schemas** → Simple copy-only
+
+### System Packages (Build-time)
 
 **Location**: `build/10-build.sh`
 
