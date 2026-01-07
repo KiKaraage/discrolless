@@ -18,31 +18,38 @@ echo "::endgroup::"
 
 echo "::group:: GNOME Extensions Setup"
 
-# Compile schemas for all extensions
-for schema_dir in /usr/share/gnome-shell/extensions/*/schemas; do
-    if [ -d "${schema_dir}" ]; then
-        glib-compile-schemas --strict "${schema_dir}"
-    fi
-done
+# Define the directory where extensions are located
+EXTENSIONS_DIR="/usr/share/gnome-shell/extensions"
 
-# Compile locales for extensions that need it
-# Handle locale/ directory structure (Vitals, Clipboard Indicator)
-for locale_dir in /usr/share/gnome-shell/extensions/*/locale; do
-    if [ -d "${locale_dir}" ]; then
-        for po_file in "${locale_dir}"/*/LC_MESSAGES/*.po; do
-            if [ -f "${po_file}" ]; then
-                msgfmt "${po_file}" -o "${po_file%.po}.mo"
+# Compile schemas and locales for each extension
+for extension in $LOCAL_EXTENSIONS; do
+    ext_path="$EXTENSIONS_DIR/$extension"
+
+    # Compile schemas
+    schema_dir="$ext_path/schemas"
+    if [ -d "$schema_dir" ]; then
+        echo "Compiling schemas for $extension"
+        glib-compile-schemas --strict "$schema_dir"
+    fi
+
+    # Compile locales (locale/ directory)
+    locale_dir="$ext_path/locale"
+    if [ -d "$locale_dir" ]; then
+        echo "Compiling 'locale/' directory for $extension"
+        for po_file in "$locale_dir"/*/LC_MESSAGES/*.po; do
+            if [ -f "$po_file" ]; then
+                msgfmt "$po_file" -o "${po_file%.po}.mo"
             fi
         done
     fi
-done
 
-# Handle po/ directory structure (Bluetooth Battery Meter)
-for po_dir in /usr/share/gnome-shell/extensions/*/po; do
-    if [ -d "${po_dir}" ]; then
-        for po_file in "${po_dir}"/*.po; do
-            if [ -f "${po_file}" ]; then
-                msgfmt "${po_file}" -o "${po_file%.po}.mo"
+    # Compile locales (po/ directory)
+    po_dir="$ext_path/po"
+    if [ -d "$po_dir" ]; then
+        echo "Compiling 'po/' directory for $extension"
+        for po_file in "$po_dir"/*.po; do
+            if [ -f "$po_file" ]; then
+                msgfmt "$po_file" -o "${po_file%.po}.mo"
             fi
         done
     fi

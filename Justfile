@@ -94,8 +94,13 @@ build $target_image=image_name $tag=default_tag:
         BUILD_ARGS+=("--build-arg" "SHA_HEAD_SHORT=$(git rev-parse --short HEAD)")
     fi
 
+    # Dynamically generate the list of local extensions
+    LOCAL_EXTENSIONS=$(ls -1 files/usr/share/gnome-shell/extensions | tr '\n' ' ')
+    BUILD_ARGS+=("--build-arg" "LOCAL_EXTENSIONS=${LOCAL_EXTENSIONS}")
+
     podman build \
         "${BUILD_ARGS[@]}" \
+        --security-opt seccomp=unconfined \
         --pull=newer \
         --tag "${target_image}:${tag}" \
         .
