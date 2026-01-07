@@ -1,3 +1,4 @@
 [submodule "files/usr/share/gnome-shell/extensions/paperwm@paperwm.github.com"]
 	path = files/usr/share/gnome-shell/extensions/paperwm@paperwm.github.com
 	url = https://github.com/paperwm/paperwm.git
+	branch = release

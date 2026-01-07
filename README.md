@@ -27,23 +27,22 @@ sudo bootc switch ghcr.io/KiKaraage/discrolless:latest
 ### 4. Customizing Image
 
 - [x] Choosing base image in `Containerfile` (line 23)
-- [ ] Add high prio extension: PaperWM as git submodule
+- [x] Add high prio extension: PaperWM as git submodule / `paperwm@paperwm.github.com`
 - [ ] Add medium prio extensions as git submodules:
-  - Bluetooth Battery Meter
-  - Clipboard Indicator 
-  - or Copyous (maybe both at first)
-  - Night Theme Switcher
-  - Topbar Weather
-  - Transparent Top Bar (Adjustable transparency)
-  - Vitals
+  - Bluetooth Battery Meter `Bluetooth-Battery-Meter@maniacx.github.com`
+  - Clipboard Indicator `clipboard-indicator@tudmotu.com`
+  - Night Theme Switcher `nightthemeswitcher@romainvigier.fr`
+  - Topbar Weather `topbar-weather@datamares.netlify.app`
+  - Transparent Top Bar (Adjustable transparency) `transparent-top-bar@ftpix.com`
+  - Vitals `Vitals@CoreCoding.com`
 - [ ] Add low prio extensions as git submodules:
-  - Dash in Panel
-  - Rounded Window Corners Reborn
-  - Shutdown Dialogue
-  - Window title is back
-  - WSP (Window Search Provider)
-  - Autohide​​​​ Battery
-  - Hide Volume Indicator
+  - Dash in Panel `dash-in-panel@fthx`
+  - Rounded Window Corners Reborn `rounded-window-corners@fxgn`
+  - Shutdown Dialogue `shutdown-dialogue@subashghimire.info.np`
+  - Window title is back `window-title-is-back@fthx`
+  - WSP (Window Search Provider) `windows-search-provider@G-dH.github.com`
+  - Autohide​Battery `autohide-battery@sitnik.ru`
+  - Hide Volume Indicator `hide-volume-indicator@stephaniebread`
 - [ ] Enabling back GitHub Actions
 
 ### 5. Development Workflow
@@ -56,7 +55,8 @@ All changes should be made via pull requests:
    - Shellcheck validation
    - Test image build
 4. Once checks pass, merge the PR
-5. Merging triggers publishes a `:latest` image
+5. Merging triggers publishes a `:next` image
+6. Regular schedules with publishes `:latest` image
 
 ### 6. Image Signing in the future
 a. Generate signing keys
