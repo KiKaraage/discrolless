@@ -10,7 +10,9 @@ on:
     branches:
       - main
     paths-ignore:
-      - '**/README.md'
+      - '**/*.md'
+      - '**/*.jpg'
+      - '**/*.png'
   workflow_dispatch:
 
 env:
