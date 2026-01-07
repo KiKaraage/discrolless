@@ -22,7 +22,7 @@ echo "::group:: GNOME Extensions Setup"
 EXTENSIONS_DIR="/usr/share/gnome-shell/extensions"
 
 # Compile schemas and locales for each extension
-for extension in $LOCAL_EXTENSIONS; do
+for extension in ${LOCAL_EXTENSIONS:-}; do
     ext_path="$EXTENSIONS_DIR/$extension"
 
     # Compile schemas
