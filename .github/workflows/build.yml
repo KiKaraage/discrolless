@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '05 10 * * *'  # 10:05am UTC everyday
+    - cron: '05 10 * * 2,5'  # 10:05am UTC on Tuesday & Friday
   push:
     branches:
       - main
@@ -81,9 +81,10 @@ jobs:
           # This generates all the tags for your image, you can add custom tags here too!
           # Default tags are "$DEFAULT_TAG" and "$DEFAULT_TAG.$date".
           tags: |
-            type=raw,value=${{ env.DEFAULT_TAG }}
-            type=raw,value=${{ env.DEFAULT_TAG }}.{{date 'YYYYMMDD'}}
-            type=raw,value={{date 'YYYYMMDD'}}
+            type=raw,value=latest,enable=${{ github.event_name == 'schedule' }}
+            type=raw,value={{date 'YYMMDD'}},enable=${{ github.event_name == 'schedule' }}
+            type=raw,value=next,enable=${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+            type=raw,value={{date 'YYMMDD'}}.${{ github.run_attempt }},enable=${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
             type=sha,enable=${{ github.event_name == 'pull_request' }}
             type=ref,event=pr
           labels: |
@@ -95,7 +96,7 @@ jobs:
             org.opencontainers.image.title=${{ env.IMAGE_NAME }}
             org.opencontainers.image.url=https://github.com/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/tree/${{ github.sha }}
             org.opencontainers.image.vendor=${{ github.repository_owner }}
-            org.opencontainers.image.version=${{ env.DEFAULT_TAG }}.{{date 'YYYYMMDD'}}
+            org.opencontainers.image.version={{date 'YYMMDD'}}${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && '.' }}{{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.run_attempt || '' }}
             io.artifacthub.package.deprecated=false
             io.artifacthub.package.keywords=${{ env.IMAGE_KEYWORDS }}
             io.artifacthub.package.license=Apache-2.0
@@ -114,7 +115,7 @@ jobs:
           # Postfix image name with -custom to make it a little more descriptive
           # Syntax: https://docs.github.com/en/actions/learn-github-actions/expressions#format
           image: ${{ env.IMAGE_NAME }}
-          tags: ${{ env.DEFAULT_TAG }}
+          tags: ${{ github.event_name == 'schedule' && 'latest' || 'next' }}
           labels: ${{ steps.metadata.outputs.labels }}
           oci: false
 
