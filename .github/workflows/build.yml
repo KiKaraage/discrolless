@@ -98,7 +98,7 @@ jobs:
             org.opencontainers.image.title=${{ env.IMAGE_NAME }}
             org.opencontainers.image.url=https://github.com/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/tree/${{ github.sha }}
             org.opencontainers.image.vendor=${{ github.repository_owner }}
-            org.opencontainers.image.version={{date 'YYMMDD'}}${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && '.' }}{{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.run_attempt || '' }}
+            org.opencontainers.image.version={{date 'YYMMDD'}}.${{ github.run_attempt }}
             io.artifacthub.package.deprecated=false
             io.artifacthub.package.keywords=${{ env.IMAGE_KEYWORDS }}
             io.artifacthub.package.license=Apache-2.0
