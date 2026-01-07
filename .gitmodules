@@ -2,3 +2,27 @@
 	path = files/usr/share/gnome-shell/extensions/paperwm@paperwm.github.com
 	url = https://github.com/paperwm/paperwm.git
 	branch = release
+[submodule "files/usr/share/gnome-shell/extensions/Bluetooth-Battery-Meter@maniacx.github.com"]
+	path = files/usr/share/gnome-shell/extensions/Bluetooth-Battery-Meter@maniacx.github.com
+	url = https://github.com/maniacx/Bluetooth-Battery-Meter.git
+	branch = GNOME45
+[submodule "files/usr/share/gnome-shell/extensions/clipboard-indicator@tudmotu.com"]
+	path = files/usr/share/gnome-shell/extensions/clipboard-indicator@tudmotu.com
+	url = https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git
+	branch = master
+[submodule "files/usr/share/gnome-shell/extensions/nightthemeswitcher@romainvigier.fr"]
+	path = files/usr/share/gnome-shell/extensions/nightthemeswitcher@romainvigier.fr
+	url = https://gitlab.com/rmnvgr/nightthemeswitcher-gnome-shell-extension.git
+	branch = main
+[submodule "files/usr/share/gnome-shell/extensions/topbar-weather@datamares.netlify.app"]
+	path = files/usr/share/gnome-shell/extensions/topbar-weather@datamares.netlify.app
+	url = https://github.com/albersonmiranda/topbar-weather.git
+	branch = main
+[submodule "files/usr/share/gnome-shell/extensions/transparent-top-bar@ftpix.com"]
+	path = files/usr/share/gnome-shell/extensions/transparent-top-bar@ftpix.com
+	url = https://github.com/zhanghai/gnome-shell-extension-transparent-top-bar.git
+	branch = master
+[submodule "files/usr/share/gnome-shell/extensions/Vitals@CoreCoding.com"]
+	path = files/usr/share/gnome-shell/extensions/Vitals@CoreCoding.com
+	url = https://github.com/corecoding/Vitals.git
+	branch = main

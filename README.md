@@ -28,13 +28,13 @@ sudo bootc switch ghcr.io/KiKaraage/discrolless:latest
 
 - [x] Choosing base image in `Containerfile` (line 23)
 - [x] Add high prio extension: PaperWM as git submodule / `paperwm@paperwm.github.com`
-- [ ] Add medium prio extensions as git submodules:
-  - Bluetooth Battery Meter `Bluetooth-Battery-Meter@maniacx.github.com`
-  - Clipboard Indicator `clipboard-indicator@tudmotu.com`
-  - Night Theme Switcher `nightthemeswitcher@romainvigier.fr`
-  - Topbar Weather `topbar-weather@datamares.netlify.app`
-  - Transparent Top Bar (Adjustable transparency) `transparent-top-bar@ftpix.com`
-  - Vitals `Vitals@CoreCoding.com`
+- [x] Add medium prio extensions as git submodules:
+  - Bluetooth Battery Meter `Bluetooth-Battery-Meter@maniacx.github.com` - GNOME45
+  - Clipboard Indicator `clipboard-indicator@tudmotu.com` - master
+  - Night Theme Switcher `nightthemeswitcher@romainvigier.fr` - main
+  - Topbar Weather `topbar-weather@datamares.netlify.app` - main
+  - Transparent Top Bar (Adjustable transparency) `transparent-top-bar@ftpix.com` - master
+  - Vitals `Vitals@CoreCoding.com` - main
 - [ ] Add low prio extensions as git submodules:
   - Dash in Panel `dash-in-panel@fthx`
   - Rounded Window Corners Reborn `rounded-window-corners@fxgn`
