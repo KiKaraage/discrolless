@@ -1,20 +1,9 @@
 #!/usr/bin/bash
 set -eoux pipefail
 
-
-echo "::group:: Copy Custom Files"
-
-echo "::endgroup::"
-
-echo "::group:: System Configuration"
-
 # Enable/disable systemd services
 # Example: systemctl enable podman.socket
 # Example: systemctl mask unwanted-service
-
-echo "::endgroup::"
-
-# GNOME Extensions Setup
 
 echo "::group:: GNOME Extensions Setup"
 
@@ -26,27 +15,32 @@ for schema_dir in /usr/share/gnome-shell/extensions/*/schemas; do
 done
 
 # Compile locales for extensions that need it
-# Handle locale/ directory structure (Vitals, Clipboard Indicator)
-for locale_dir in /usr/share/gnome-shell/extensions/*/locale; do
-    if [ -d "${locale_dir}" ]; then
-        for po_file in "${locale_dir}"/*/LC_MESSAGES/*.po; do
-            if [ -f "${po_file}" ]; then
-                msgfmt "${po_file}" -o "${po_file%.po}.mo"
-            fi
-        done
-    fi
-done
+# Bluetooth Battery Meter (po/)
+if [ -d /usr/share/gnome-shell/extensions/Bluetooth-Battery-Meter@maniacx.github.com/po ]; then
+    for po_file in /usr/share/gnome-shell/extensions/Bluetooth-Battery-Meter@maniacx.github.com/po/*.po; do
+        if [ -f "${po_file}" ]; then
+            msgfmt "${po_file}" -o "${po_file%.po}.mo"
+        fi
+    done
+fi
 
-# Handle po/ directory structure (Bluetooth Battery Meter)
-for po_dir in /usr/share/gnome-shell/extensions/*/po; do
-    if [ -d "${po_dir}" ]; then
-        for po_file in "${po_dir}"/*.po; do
-            if [ -f "${po_file}" ]; then
-                msgfmt "${po_file}" -o "${po_file%.po}.mo"
-            fi
-        done
-    fi
-done
+# Vitals (locale/)
+if [ -d /usr/share/gnome-shell/extensions/Vitals@CoreCoding.com/locale ]; then
+    for po_file in /usr/share/gnome-shell/extensions/Vitals@CoreCoding.com/locale/*/LC_MESSAGES/*.po; do
+        if [ -f "${po_file}" ]; then
+            msgfmt "${po_file}" -o "${po_file%.po}.mo"
+        fi
+    done
+fi
+
+# Clipboard Indicator (locale/)
+if [ -d /usr/share/gnome-shell/extensions/clipboard-indicator@tudmotu.com/locale ]; then
+    for po_file in /usr/share/gnome-shell/extensions/clipboard-indicator@tudmotu.com/locale/*/LC_MESSAGES/*.po; do
+        if [ -f "${po_file}" ]; then
+            msgfmt "${po_file}" -o "${po_file%.po}.mo"
+        fi
+    done
+fi
 
 # Install Vitals helper binaries
 if [ -d /usr/share/gnome-shell/extensions/Vitals@CoreCoding.com/helpers ]; then
