@@ -1,6 +1,19 @@
 #!/usr/bin/bash
 set -eoux pipefail
 
+# Fix OSTree /etc conflict if both /etc and /usr/etc exist
+if [ -d /etc ] && [ -d /usr/etc ]; then
+    echo "Detected both /etc and /usr/etc - removing duplicate /etc"
+    # Intentionally removing /etc to resolve OSTree conflict
+    # shellcheck disable=SC2114
+    rm -rf /etc
+fi
+
+# Ensure /etc is a symlink to /usr/etc if only /usr/etc exists
+if [ -d /usr/etc ] && [ ! -e /etc ]; then
+    ln -sr /usr/etc /etc
+fi
+
 # Enable/disable systemd services
 # Example: systemctl enable podman.socket
 # Example: systemctl mask unwanted-service
