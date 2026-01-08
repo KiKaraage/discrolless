@@ -12,8 +12,8 @@ COPY build.sh /build.sh
 # B: Build from Bluefin as base image and run build script to modify it
 FROM ghcr.io/projectbluefin/distroless:latest
 
-# Fix OSTree /etc conflict - ensure /etc is symlinked to /usr/etc
-RUN cp -a /etc /usr/etc && rm -rf /etc && ln -sr /usr/etc /etc
+# Fix OSTree /etc conflict - remove /usr/etc if it exists (keep /etc as directory)
+RUN rm -rf /usr/etc
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
