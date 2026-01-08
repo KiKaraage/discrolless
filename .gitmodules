@@ -26,3 +26,15 @@
 	path = files/usr/share/gnome-shell/extensions/Vitals@CoreCoding.com
 	url = https://github.com/corecoding/Vitals.git
 	branch = main
+[submodule "files/usr/share/gnome-shell/extensions/window-title-is-back@fthx"]
+	path = files/usr/share/gnome-shell/extensions/window-title-is-back@fthx
+	url = https://github.com/fthx/window-title-is-back.git
+	branch = main
+[submodule "files/usr/share/gnome-shell/extensions/dash-in-panel@fthx"]
+	path = files/usr/share/gnome-shell/extensions/dash-in-panel@fthx
+	url = https://github.com/fthx/dash-in-panel.git
+    branch = main
+[submodule "files/usr/share/gnome-shell/extensions/shutdown-dialogue@subashghimire.info.np"]
+	path = files/usr/share/gnome-shell/extensions/shutdown-dialogue@subashghimire.info.np
+	url = https://github.com/PublisherName/shutdown-dialogue-gs-extension.git
+	branch = main
