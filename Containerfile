@@ -12,10 +12,7 @@ COPY build.sh /build.sh
 # B: Build from Bluefin as base image and run build script to modify it
 FROM ghcr.io/projectbluefin/distroless:latest
 
-# DEBUG: List /etc and /usr/etc contents
-RUN ls -la /etc/ && echo "---" && ls -la /usr/etc/ 2>/dev/null
-
-# Fix OSTree /etc conflict - remove /usr/etc if it exists (keep /etc as directory)
+# Fix OSTree /etc conflict - Remove /usr/etc if it exists (keep /etc)
 RUN rm -rf /usr/etc
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
