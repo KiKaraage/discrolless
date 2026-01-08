@@ -13,10 +13,10 @@ COPY build.sh /build.sh
 FROM ghcr.io/projectbluefin/distroless:latest
 
 # DEBUG: List /etc and /usr/etc contents
-RUN ls -la /etc/ | head -20 && echo "---" && ls -la /usr/etc/ 2>/dev/null || echo "/usr/etc does not exist"
+RUN ls -la /etc/ && echo "---" && ls -la /usr/etc/ 2>/dev/null
 
 # Fix OSTree /etc conflict - remove /usr/etc if it exists (keep /etc as directory)
-RUN rm -rf /etc
+RUN rm -rf /usr/etc
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
