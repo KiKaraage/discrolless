@@ -36,10 +36,10 @@ sudo bootc switch ghcr.io/KiKaraage/discrolless:latest
   - Transparent Top Bar (Adjustable transparency) `transparent-top-bar@ftpix.com` - master
   - Vitals `Vitals@CoreCoding.com` - main
 - [ ] Add low prio extensions as git submodules:
-  - Dash in Panel `dash-in-panel@fthx`
+  - [x] Dash in Panel `dash-in-panel@fthx`
   - Rounded Window Corners Reborn `rounded-window-corners@fxgn`
-  - Shutdown Dialogue `shutdown-dialogue@subashghimire.info.np`
-  - Window title is back `window-title-is-back@fthx`
+  - [x] Shutdown Dialogue `shutdown-dialogue@subashghimire.info.np`
+  - [x] Window title is back `window-title-is-back@fthx`
   - WSP (Window Search Provider) `windows-search-provider@G-dH.github.com`
   - Autohide​Battery `autohide-battery@sitnik.ru`
   - Hide Volume Indicator `hide-volume-indicator@stephaniebread`
