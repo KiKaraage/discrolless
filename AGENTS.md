@@ -1,9 +1,9 @@
-# Agents Instructions for `Discrolless` bootc Image
+# Agents Instructions for `Dakertas` bootc Image
 
 ## CRITICAL: GitHub API Usage
 
 **ALWAYS use GitHub API for external references:**
-- When researching other repositories (e.g., projectbluefin/distroless, ublue-os/bluefin)
+- When researching other repositories (e.g., projectbluefin/dakota, ublue-os/bluefin)
 - When checking Containerfiles, build scripts, or configuration files
 - Use the `github-mcp-server-get_file_contents` tool instead of curl/wget
 - This ensures consistent, authenticated access and better error handling
@@ -59,8 +59,8 @@
 ## Core Principles
 
 ### Multi-Stage Build Architecture
-The original Finpilot template follows the **Bluefin architecture pattern** from @projectbluefin/distroless.
-Instead of fully following the template, `discrolless` just added several extra GNOME Extensions on top of @projectbluefin/distroless, mainly PaperWM as a horizontal scrolling windowing mechanism.
+The original Finpilot template follows the **Bluefin architecture pattern** from @projectbluefin/dakota.
+Instead of fully following the template, `dakertas` just added several extra GNOME Extensions on top of @projectbluefin/dakota, mainly PaperWM as a horizontal scrolling windowing mechanism.
 
 **Architecture Layers:**
 1. **Context Stage (ctx)** - Combines resources from multiple sources:
@@ -87,7 +87,7 @@ Instead of fully following the template, `discrolless` just added several extra 
 - **Runtime** (`custom/`): User installs after deployment. Use Brewfiles, Flatpaks. CLI tools, GUI apps, dev environments.
 
 ### Bluefin Convention Compliance
-- **ALWAYS follow @ublue-os/bluefin and @projectbluefin/distroless patterns. Confirm before deviating.**
+- **ALWAYS follow @ublue-os/bluefin and @projectbluefin/dakota patterns. Confirm before deviating.**
 - Check @bootc-dev for container best practices
 
 ### Branch Strategy

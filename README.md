@@ -1,13 +1,13 @@
-# Di*scroll*ess
+# Dakertas
 
-- Basic Bluefin based on [gnomeos-nightly](`quay.io/gnome_infrastructure/gnome-build-meta:gnomeos-nightly`)
+- Bluefin based on [gnomeos-nightly](`quay.io/gnome_infrastructure/gnome-build-meta:gnomeos-nightly`)
 - Added PaperWM for that horizontal scrolling life
 - Added some other extensions
 - `:latest` image built every Thursday & Friday
 - `:next` image built on pushes
 
 ```
-sudo bootc switch ghcr.io/KiKaraage/discrolless:latest
+sudo bootc switch ghcr.io/KiKaraage/dakertas:latest
 ```
 
 ## Included Build System
@@ -43,7 +43,7 @@ sudo bootc switch ghcr.io/KiKaraage/discrolless:latest
   - WSP (Window Search Provider) `windows-search-provider@G-dH.github.com`
   - Autohide​Battery `autohide-battery@sitnik.ru`
   - Hide Volume Indicator `hide-volume-indicator@stephaniebread`
-- [ ] Enabling back GitHub Actions
+- [x] Enabling back GitHub Actions
 
 ### 5. Development Workflow
 

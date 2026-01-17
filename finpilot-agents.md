@@ -4,7 +4,7 @@
 
 **File**: `Containerfile`
 
-This template uses a **multi-stage build** following the @projectbluefin/distroless pattern.
+This template uses a **multi-stage build** following the @projectbluefin/dakota pattern.
 
 **Stage 1: Context (ctx) - Line 39**
 Combines resources from multiple OCI containers:
@@ -61,7 +61,7 @@ FROM quay.io/fedora/fedora-bootc:42       # Fedora-based
 
 **File**: `Containerfile` (ctx stage, lines 6-18)
 
-Following the `@projectbluefin/distroless` pattern, you can layer in additional system files from OCI containers. These are commented out by default in the template.
+Following the `@projectbluefin/dakota` pattern, you can layer in additional system files from OCI containers. These are commented out by default in the template.
 
 **Available OCI Containers**:
 ```dockerfile
@@ -247,7 +247,7 @@ bootc switch --mutate-in-place --transport registry ghcr.io/USERNAME/REPO:stable
 
 ### 8. Understanding the Multi-Stage Build Architecture
 
-This template implements a **multi-stage build pattern** following @projectbluefin/distroless.
+This template implements a **multi-stage build pattern** following @projectbluefin/dakota.
 
 **Why Multi-Stage?**
 - **Modularity**: Combine resources from multiple OCI containers

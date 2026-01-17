@@ -1,4 +1,4 @@
-# discrolless by KiKaraage
+# dakertas by KiKaraage
 
 # A: Copy build script 
 FROM scratch AS ctx
@@ -10,7 +10,7 @@ COPY build.sh /build.sh
 # COPY --from=ghcr.io/ublue-os/brew:latest /system_files /oci/brew
 
 # B: Build from Bluefin as base image and run build script to modify it
-FROM ghcr.io/projectbluefin/distroless:latest
+FROM ghcr.io/projectbluefin/dakota:latest
 
 # Fix OSTree /etc conflict - Remove /usr/etc if it exists (keep /etc)
 RUN rm -rf /usr/etc
